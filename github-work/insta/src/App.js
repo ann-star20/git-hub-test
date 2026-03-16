@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     // 1. 엑셀 파일 로드 (백엔드 DB 조회와 유사한 과정)
-    fetch('../datagold_prices.xlsx') // public 폴더 기준 경로 확인 필요
+    fetch('/data/gold_prices.xlsx') // public 폴더 기준 경로 확인 필요
       .then(res => {
         if (!res.ok) throw new Error('파일을 찾을 수 없습니다.');
           return res.arrayBuffer(); 
@@ -23,7 +23,7 @@ function App() {
         const formattedData = rawData.map((item, i) => ({
           id: i + 1,
           username: i % 2 === 0 ? 'gold_miner' : 'rich_investor', // 유저명 랜덤
-          profileImg: i % 2 === 0 ? '/images/main.png' : '/images/woman.png',
+          profileImg: i % 2 === 0 ? '/images/man.png' : '/images/woman.png',
           // 엑셀에 시세 데이터가 있으니 이미지명은 img01~10 순환 사용
           feedImg: `/images/img${String((i % 10) + 1).padStart(2, '0')}.jpg`,
           content: `오늘의 금 시세 고시날짜: ${item['고시날짜']} | 살 때: ${item['내가살때(순금)']}원`,
